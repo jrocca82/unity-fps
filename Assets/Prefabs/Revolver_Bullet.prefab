@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5474481224838543414}
   - component: {fileID: 7181560398577572219}
   - component: {fileID: -2720941871114734606}
+  - component: {fileID: -872089398643339325}
   m_Layer: 0
   m_Name: Revolver_Bullet
   m_TagString: bullet
@@ -115,3 +116,15 @@ CapsuleCollider:
   m_Height: 0.010261014
   m_Direction: 1
   m_Center: {x: -0.0150195435, y: 0.050438117, z: 0.019303381}
+--- !u!114 &-872089398643339325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5834905741544413667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1be93da04af94f1b81193204975cae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

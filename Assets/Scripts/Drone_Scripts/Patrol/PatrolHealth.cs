@@ -3,33 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StationaryHealth : MonoBehaviour
+public class PatrolHealth : DroneHealth
 {
-    public Image enemyHealth;
-
-    public GameObject explosion;
-
-    public Animation animClip;
-
-    void Start()
+    protected override void Start()
     {
-        animClip = GetComponent<Animation>();
+        base.Start();
     }
 
-    void Update()
+    protected override void Update()
     {
-        if (enemyHealth.fillAmount <= 0)
-        {
-            StartCoroutine("DeathAnim");
-        }
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "bullet")
-        {
-            enemyHealth.fillAmount -= 0.09f;
-        }
+        base.Update();
     }
 
     IEnumerator DeathAnim()
@@ -42,5 +25,13 @@ public class StationaryHealth : MonoBehaviour
             gameObject.transform.rotation);
         Destroy(explosionClone, 0.5f);
         Destroy(gameObject, 0.2f);
+    }
+
+    public override void DroneDeath() {
+        base.DroneDeath();
+    }
+
+    public override void DestructionOccur() {
+        base.DestructionOccur();
     }
 }

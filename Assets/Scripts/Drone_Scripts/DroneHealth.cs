@@ -3,32 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PatrolHealth : MonoBehaviour
+public class DroneHealth : MonoBehaviour, IDestructable
 {
-    public Image enemyHealth;
+    [SerializeField]
+    protected Image enemyHealth;
 
-    public GameObject explosion;
+    [SerializeField]
+    protected GameObject explosion;
 
-    public Animation animClip;
+    [SerializeField]
+    protected Animation animClip;
 
-    void Start()
+    protected virtual void Start()
     {
         animClip = GetComponent<Animation>();
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (enemyHealth.fillAmount <= 0)
         {
-            StartCoroutine("DeathAnim");
-        }
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "bullet")
-        {
-            enemyHealth.fillAmount -= 0.09f;
+            DroneDeath();
         }
     }
 
@@ -42,5 +37,17 @@ public class PatrolHealth : MonoBehaviour
             gameObject.transform.rotation);
         Destroy(explosionClone, 0.5f);
         Destroy(gameObject, 0.2f);
+    }
+
+    public virtual void DroneDeath()
+    {
+        StartCoroutine("DeathAnim");
+    }
+
+    public virtual void DestructionOccur() {
+        enemyHealth.fillAmount -= 0.09f;
+        if(enemyHealth.fillAmount <= 0) {
+            DroneDeath();
+        }
     }
 }
